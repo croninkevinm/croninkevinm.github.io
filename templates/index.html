@@ -1,0 +1,78 @@
+<!-- templates/index.html -->
+{% set title = "KMCronin" %}
+{% extends "_partials/_base.html" %}
+
+{% block css %}
+{% endblock css %}
+
+{% block header %}
+<header>
+  <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="https://kmcronin.com">KMCronin</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a href="#" class="nav-link active">Home</a></li>
+        <li class="nav-item"><a href="projects.html" class="nav-link">Projects</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+{% endblock header %}
+
+{% block main %}
+<main role="main" class="container">
+  <div class="starter-template">
+    <h1>KMCronin</h1>
+    <p class="lead">Site Under Construction</p>
+  </div>
+</main>
+{% endblock main %}
+
+{% block footer %}
+<footer class="footer mt-auto bg-light py-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9">
+        <h5>KMCronin</h5>
+        <nav class="nav">
+          <a href="https://github.com/croninkevinm/" class="nav-link" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+        </nav>
+      </div>
+      <div class="col-sm">
+        <h5>Sitemap</h5>
+        <nav class="nav flex-column">
+          <a href="#" class="nav-link active" aria-label="Home">Home</a>
+          <a href="projects.html" class="nav-link" aria-label="Projects">Projects</a>
+          <a href="contact.html" class="nav-link" aria-label="Contact">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</footer>
+<div class="bg-secondary text-light" id="copyright">
+  <div class="container">
+    <div class="row py-3">
+      <div class="col-sm">
+        <small>
+          Made with <i aria-hidden="true" class="fas fa-coffee"></i>
+          <span class="sr-only">coffee</span> and <i aria-hidden="true" class="fas fa-beer"></i>
+          <span class="sr-only">beer</span>in Grand Rapids, MI.
+        </small>
+      </div>
+      <div class="col-sm text-md-right">
+        <small>Copyright &copy;<span id="copyrightyear">2019</span> Kevin Cronin All rights reserved.</small>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock footer %}
+
+{% block js %}
+{% endblock js %}
