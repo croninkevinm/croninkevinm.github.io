@@ -1,7 +1,10 @@
-<!-- templates/index.html -->
-
-
-
+{% set navigation_bar = [
+  ('index.html', 'home', 'Home'),
+  ('projects.html', 'projects', 'Projects'),
+  ('contact.html', 'contact', 'Contact'),
+  ] %}
+{% set active_page = active_page|default('home') %}
+{% set title = title|default('KMCronin') %}
 
 <!DOCTYPE html>
 <html lang="en" class="h-100">
@@ -18,9 +21,9 @@
     integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
   <!-- Site CSS -->
   <link rel="stylesheet" href="static/css/site.css" />
-  
-
-  <title>KMCronin</title>
+  {% block css %}
+  {% endblock css %}
+  <title>{{ title }}</title>
 </head>
 
 <body class="d-flex flex-column h-100">
@@ -33,35 +36,23 @@
       </button>
       <div class="collapse navbar-collapse" id="navbar">
         <ul class="navbar-nav mr-auto">
-          
-          
-          
-          
-          <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
-          
-          
-          
-          
-          <li class="nav-item"><a href="projects.html" class="nav-link">Projects</a></li>
-          
-          
-          
-          
-          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-          
+          {% for href, id, caption in navigation_bar %}
+          {% if id == active_page %}
+          {% set class = "nav-link active" %}
+          {% else %}
+          {% set class = "nav-link" %}
+          {% endif %}
+          <li class="nav-item"><a href="{{ href }}" class="{{ class }}">{{ caption }}</a></li>
+          {% endfor %}
         </ul>
       </div>
     </nav>
   </header>
   <main role="main" class="container">
-    
-<div class="starter-template">
-  <h1>KMCronin</h1>
-  <p class="lead">Site Under Construction</p>
-</div>
-
+    {% block main %}
+    {% endblock main %}
   </main>
-  
+  {% block footer %}
   <footer class="footer mt-auto bg-light py-3">
     <div class="container">
       <div class="row">
@@ -76,22 +67,14 @@
         <div class="col-sm">
           <h5>Sitemap</h5>
           <nav class="nav flex-column">
-            
-            
-            
-            
-            <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
-            
-            
-            
-            
-            <li class="nav-item"><a href="projects.html" class="nav-link">Projects</a></li>
-            
-            
-            
-            
-            <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-            
+            {% for href, id, caption in navigation_bar %}
+            {% if id == active_page %}
+            {% set class = "nav-link active" %}
+            {% else %}
+            {% set class = "nav-link" %}
+            {% endif %}
+            <li class="nav-item"><a href="{{ href }}" class="{{ class }}">{{ caption }}</a></li>
+            {% endfor %}
           </nav>
         </div>
       </div>
@@ -113,7 +96,7 @@
       </div>
     </div>
   </div>
-  
+  {% endblock footer %}
   <!-- jQuery  -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -128,8 +111,8 @@
     crossorigin="anonymous"></script>
   <!-- Site JavaScript -->
   <script src="static/js/site.js"></script>
-  
-
+  {% block js %}
+  {% endblock js %}
 </body>
 
 </html>
