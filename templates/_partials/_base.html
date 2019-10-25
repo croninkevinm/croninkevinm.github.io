@@ -1,3 +1,11 @@
+{% set navigation_bar = [
+  ('index.html', 'home', 'Home'),
+  ('projects.html', 'projects', 'Projects'),
+  ('contact.html', 'contact', 'Contact'),
+  ] %}
+{% set active_page = active_page|default('home') %}
+{% set title = title|default('KMCronin') %}
+
 <!DOCTYPE html>
 <html lang="en" class="h-100">
 
@@ -19,11 +27,75 @@
 </head>
 
 <body class="d-flex flex-column h-100">
-  {% block header %}
-  {% endblock header %}
-  {% block main %}
-  {% endblock main %}
+  <header>
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="https://kmcronin.com">KMCronin</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav mr-auto">
+          {% for href, id, caption in navigation_bar %}
+          {% if id == active_page %}
+          {% set class = "nav-link active" %}
+          {% else %}
+          {% set class = "nav-link" %}
+          {% endif %}
+          <li class="nav-item"><a href="{{ href }}" class="{{ class }}">{{ caption }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main role="main" class="container">
+    {% block main %}
+    {% endblock main %}
+  </main>
   {% block footer %}
+  <footer class="footer mt-auto bg-light py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9">
+          <h5>KMCronin</h5>
+          <nav class="nav">
+            <a href="https://github.com/croninkevinm/" class="nav-link" aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+          </nav>
+        </div>
+        <div class="col-sm">
+          <h5>Sitemap</h5>
+          <nav class="nav flex-column">
+            {% for href, id, caption in navigation_bar %}
+            {% if id == active_page %}
+            {% set class = "nav-link active" %}
+            {% else %}
+            {% set class = "nav-link" %}
+            {% endif %}
+            <li class="nav-item"><a href="{{ href }}" class="{{ class }}">{{ caption }}</a></li>
+            {% endfor %}
+          </nav>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="bg-secondary text-light" id="copyright">
+    <div class="container">
+      <div class="row py-3">
+        <div class="col-sm">
+          <small>
+            Made with <i aria-hidden="true" class="fas fa-coffee"></i>
+            <span class="sr-only">coffee</span> and <i aria-hidden="true" class="fas fa-beer"></i>
+            <span class="sr-only">beer</span>in Grand Rapids, MI.
+          </small>
+        </div>
+        <div class="col-sm text-md-right">
+          <small>Copyright &copy;<span id="copyrightyear">2019</span> Kevin Cronin All rights reserved.</small>
+        </div>
+      </div>
+    </div>
+  </div>
   {% endblock footer %}
   <!-- jQuery  -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
